@@ -6,7 +6,7 @@
 	define('DB_NAME', 'blogwebsite');
 
 	define('APPROOT', dirname(dirname(__FILE__)));
-	define('URLROOT', 'http://localhost/School/BlogWebsite');
+	define('URLROOT', 'http://localhost/BlogWebsite');
 
 	define('SITENAME', 'Blog Website');
 

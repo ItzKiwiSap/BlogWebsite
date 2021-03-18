@@ -4,18 +4,23 @@
 	$latestPosts = $users->latestPosts($_SESSION['user_id'], $limit);
 
 	if(empty($latestPosts)) {
-		echo '<small>Je hebt nog geen berichten geplaatst.</small>';
+		echo '<small>U heeft nog geen berichten geplaatst.</small>';
 	} else {
 		foreach ($latestPosts as $post) {
 			echo '<div class="col">
-					<div class="card shadow border-0">
-						<div class="card-body">
-							<h5 class="card-title">' . $post->title . '</h5>
-							<p class="card-text btn btn-primary">' . $post->categories . '</p>
-							<p class="card-text">' . formatBody($post->body) . '</p>
-							<p class="card-text"><small class="text-muted">' . formatTime($post->creationtime) . '</small></p>
+					<a class="text-decoration-none text-reset" href="' . URLROOT . '/pages/blogs?id=' . $post->id . '">
+						<div class="card shadow border-0">
+							<div class="card-body">
+								<h5 class="card-title">' . $post->title . '</h5>
+								' . formatCategories($post->categories, 4, 20) . '
+								<p class="card-text">' . formatBody($post->body) . '</p>
+								<div class="d-flex flex-row justify-content-between">
+									<p class="card-text"><small class="text-muted">' . formatTime($post->creationtime) . '</small></p>
+									<p class="card-text"><small class="text-muted">Klik om verder te lezen.</small></p>
+								</div>
+							</div>
 						</div>
-					</div>
+					</a>
 				</div>';
 		}
 	}

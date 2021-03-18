@@ -17,12 +17,28 @@
 		}
 	}
 
+	function formatGroup($group) {
+		if($group == 'user') return 'Gebruiker';
+		if($group == 'blogger') return 'Blogger';
+		if($group == 'admin') return 'Beheerder';
+	}
+
 	function formatBody($body) {
 		if(strlen($body) > 200) {
 			return substr($body, 0, 200) . '...';
 		} else {
 			return $body;
 		}
+	}
+
+	function formatCategories($categories, $columnSize, $width) {
+		$str = '<div class="d-flex row row-cols-md-' . $columnSize . '">';
+
+		foreach (explode(', ', $categories) as $category) {
+				$str = $str . '<p class="card-text btn btn-primary m-1" style="width: ' . $width . '%;"><small>' . $category . '</small></p>';
+		}
+
+		return $str . '</div>';
 	}
 
 	function milliseconds() {

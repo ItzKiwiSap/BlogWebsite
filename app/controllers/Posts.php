@@ -10,8 +10,20 @@ class Posts extends Controller {
 		return $this->postModel->add($user_id, $title, $categories, $body);
 	}
 
-	public function remove($id) {
-		return $this->postModel->remove($id);
+	public function remove() {
+		$id;
+
+		if(isset($_GET['removeid'])) {
+			$id = $_GET['removeid'];
+		}
+
+		$this->postModel->remove($id);
+
+		header("Location: " . URLROOT . "/pages/blogs");
+	}
+
+	public function getPost($id) {
+		return $this->postModel->getPost($id);
 	}
 
 	public function getAllPosts() {

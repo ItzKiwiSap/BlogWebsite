@@ -51,7 +51,7 @@ class User {
     public function getUserName($userId) {
         $this->db->query('SELECT username FROM users WHERE id = :userid');
         $this->db->bind(':userid', $userId);
-        return $this->db->single();
+        return $this->db->single()->username;
     }
 
     public function findAdminUsers() {
