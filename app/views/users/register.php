@@ -4,8 +4,19 @@
 ?>
 
 <style type="text/css">
+	html, body {
+	    min-height: 100%;
+	    margin:0;
+	}
+
 	body {
-		background: linear-gradient(to right bottom, #22d3ff, #a236ff);
+	    background-image: linear-gradient(to right bottom, #22d3ff, #a236ff);
+	    background-image: -moz-linear-gradient(to right bottom, #22d3ff, #a236ff) no-repeat;
+	    background-image: -ms-linear-gradient(to right bottom, #22d3ff, #a236ff) no-repeat;
+	    background-image: -webkit-linear-gradient(to right bottom, #22d3ff, #a236ff) no-repeat;
+	    background-image: -webkit-linear-gradient(to right bottom, #22d3ff, #a236ff) no-repeat;
+	    background-image: -o-linear-gradient(to right bottom, #22d3ff, #a236ff) no-repeat;
+	    background-image:  linear-gradient(to right bottom, #22d3ff, #a236ff) no-repeat;
 	}
 </style>
 

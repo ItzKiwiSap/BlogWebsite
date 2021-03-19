@@ -12,7 +12,7 @@
 						<div class="card shadow border-0">
 							<div class="card-body">
 								<h5 class="card-title">' . $post->title . '</h5>
-								' . formatCategories($post->categories, 4, 20) . '
+								' . formatCategories($post->categories) . '
 								<p class="card-text">' . formatBody($post->body) . '</p>
 								<div class="d-flex flex-row justify-content-between">
 									<p class="card-text"><small class="text-muted">' . formatTime($post->creationtime) . '</small></p>

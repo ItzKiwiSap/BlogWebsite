@@ -2,6 +2,11 @@
 	require_once APPROOT . '/views/includes/head.inc.php';
 	require_once APPROOT . '/views/includes/navigation.inc.php';
 
+	if(!isLoggedIn()) {
+		header("Location: " . URLROOT);
+		return;
+	}
+
 	$users = new Users;
 	$allPostsCount = $users->allPosts($_SESSION['user_id']);
 ?>

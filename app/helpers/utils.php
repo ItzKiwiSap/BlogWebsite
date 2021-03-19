@@ -31,11 +31,11 @@
 		}
 	}
 
-	function formatCategories($categories, $columnSize, $width) {
-		$str = '<div class="d-flex row row-cols-md-' . $columnSize . '">';
+	function formatCategories($categories) {
+		$str = '<div class="me-md-1 d-flex align-content-stretch flex-wrap">';
 
 		foreach (explode(', ', $categories) as $category) {
-				$str = $str . '<p class="card-text btn btn-primary m-1" style="width: ' . $width . '%;"><small>' . $category . '</small></p>';
+				$str = $str . '<p class="card-text btn btn-primary btn-sm m-1 d-flex"><small>' . $category . '</small></p>';
 		}
 
 		return $str . '</div>';

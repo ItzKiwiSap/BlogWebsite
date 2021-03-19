@@ -6,8 +6,30 @@ class Posts extends Controller {
 		$this->postModel = $this->model('Post');
 	}
 
-	public function add($user_id, $title, $body, $categories) {
-		return $this->postModel->add($user_id, $title, $categories, $body);
+	public function create() {
+		$data = [
+			'title' => 'Plaats blog',
+			'blogtitle' => '',
+			'categories' => '',
+			'body' => ''
+		];
+
+		if($_SERVER['REQUEST_METHOD'] == 'POST') {
+			$_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+			$data = [
+				'title' => 'Plaats blog',
+				'blogtitle' => trim($_POST['title']),
+				'categories' => $_POST['categories'],
+				'body' => trim($_POST['body'])
+			];
+
+			if(!empty($data['blogtitle']) && !empty($data['categories']) && !empty($data['body'])) {
+				$this->postModel->addPost($_SESSION['user_id'], $data['blogtitle'], $data['body'], $data['categories']);
+			}
+		}
+
+		header("Location: " . URLROOT . "/pages/blogs");
 	}
 
 	public function remove() {

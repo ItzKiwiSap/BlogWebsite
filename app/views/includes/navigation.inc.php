@@ -12,9 +12,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="<?php echo URLROOT; ?>/pages/blogs">Blog</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?php echo URLROOT; ?>/members">Leden</a>
-            </li>
         </ul>
 
         <ul class="navbar-nav d-flex p-2 ms-auto">
@@ -28,7 +25,7 @@
             <?php else : ?>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"><?php echo $_SESSION['username']; ?></a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="<?php echo URLROOT; ?>/users/profile">Profiel</a>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/users/logout">Uitloggen</a></li>

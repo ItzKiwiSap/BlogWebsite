@@ -17,9 +17,21 @@
 	.card-text small {
 		font-size: 11px;
 	}
+
+	input[name="visibleCategories"] {
+		border: none;
+		outline: none;
+	}
+
+	input[name="visibleCategories"]:focus {
+		border: none;
+		outline: none;
+		box-shadow: none;
+	}
 </style>
 
 <?php if(isset($_GET['id'])) : ?>
+
 	<div class="container mt-5">
 		<?php require_once APPROOT . '/views/includes/blogpost.inc.php'; ?>
 
@@ -27,7 +39,7 @@
 			<div class="col-xl">
 				<h1><?php echo $post->title; ?></h1>
 				<div class="row row-cols-md-2 g-1">
-					<?php echo formatCategories($post->categories, 6, 20); ?>
+					<?php echo formatCategories($post->categories, 8); ?>
 				</div>
 				
 				<div class="mt-3">
@@ -61,11 +73,44 @@
 			</div>
 		</div>
 	</div>
+
+<?php elseif(isset($_GET['create']) && isLoggedIn() && isBlogger()) : ?>
+
+	<div class="container mt-5">
+		<form method="POST" action="<?php echo URLROOT; ?>/posts/create" onkeydown="return event.key != 'Enter';">
+			<div class="form-group">
+				<input type="text" class="form-control" name="title" placeholder="Titel" required>
+
+				<div class="container border rounded mt-4">
+					<div class="category-container gap-1 d-flex flex-row p-1">
+						<input type="text" class="form-control d-flex align-content-stretch flex-wrap" name="visibleCategories" placeholder="Voeg een categorie toe">
+					</div>
+				</div>
+
+				<div class="invisible-category-container">
+					<input type="text" name="categories" hidden>
+				</div>
+
+				<textarea class="form-control mt-4" maxlength="3000" minlength="500" name="body" rows="25" placeholder="Blog" required></textarea>
+
+				<input type="submit" name="submit" class="form-control btn btn-primary mt-4" value="Plaats blog">
+			</div>
+		</form>
+	</div>
+
 <?php else : ?>
+
 	<div class="container mt-5">
 		<div class="row">
 			<div class="col-xl">
-				<h1>Blogs</h1>
+				<div class="row">
+					<h1 class="col">Blogs</h1>
+					<?php 
+						if(isLoggedIn() && isBlogger()) {
+							echo '<a class="col d-flex justify-content-end mt-4" href="?create">Maak een nieuwe blog...</a>';
+						}
+					?>
+				</div>
 
 				<div class="row row-cols-md-2 g-4 mt-1">
 					<?php
@@ -75,4 +120,71 @@
 			</div>
 		</div>
 	</div>
+
 <?php endif; ?>
+
+<script>
+	const categoryContainer = document.querySelector('.category-container');
+	const input = document.querySelector('.category-container input');
+	const categoryInput = document.querySelector('.invisible-category-container input');
+	var categories = [];
+
+	function createCategory(label) {
+		const button = document.createElement('button');
+		button.setAttribute('type', 'button');
+		button.setAttribute('class', 'btn btn-primary btn-sm me-md-1 d-flex align-content-stretch flex-wrap category');
+		button.setAttribute('data-item', label);
+		button.innerHTML = label;
+		return button;
+	}
+
+	function reset() {
+		document.querySelectorAll('.category').forEach(function(category) {
+			category.parentElement.removeChild(category);
+		});
+	}
+
+	function addCategories() {
+		reset();
+		categories.slice().reverse().forEach(function(category) {
+			const cat = createCategory(category);
+			categoryContainer.prepend(cat);
+		});
+
+		categoryInput.value = categories.join(', ');
+	}
+
+	input.addEventListener('keyup', function(e) {
+		if(e.key == 'Enter') {
+			const category = createCategory(input.value);
+
+			if(input.value == '' || input.value.length > 15 || categories.includes(input.value)) return;
+
+			categories.push(input.value);
+			addCategories();
+
+			if(categories.length == 5) {
+				input.value = 'Je kan maximaal 5 categorieën toevoegen';
+				input.disabled = true;
+				input.style = 'background: none;';
+				return;
+			}
+
+			input.value = '';
+		}
+	});
+
+	document.addEventListener('click', function(e) {
+		if(e.target.tagName == 'BUTTON') {
+			const value = e.target.getAttribute('data-item');
+			const index = categories.indexOf(value);
+			categories = [...categories.slice(0, index), ...categories.slice(index + 1)];
+			addCategories();
+
+			if(categories.length == 4) {
+				input.disabled = false;
+				input.value = '';
+			}
+		}
+	});
+</script>

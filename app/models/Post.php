@@ -9,7 +9,7 @@ class Post {
 	}
 
 	public function addPost($user_id, $title, $body, $categories) {
-		$this->db->query('INSERT INTO posts (userid, title, categories, body) VALUES (:userid, :title, :categories, :body');
+		$this->db->query('INSERT INTO posts (userid, title, categories, body) VALUES (:userid, :title, :categories, :body)');
 
 		$this->db->bind(':userid', $user_id);
 		$this->db->bind(':title', $title);
@@ -32,7 +32,7 @@ class Post {
 	}
 
 	public function getAllPosts() {
-		$this->db->query('SELECT * FROM posts');
+		$this->db->query('SELECT * FROM posts ORDER BY creationtime DESC');
 		return $this->db->resultSet();
 	}
 }
