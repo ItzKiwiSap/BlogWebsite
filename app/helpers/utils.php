@@ -45,7 +45,7 @@
 	}
 
 	function formatPostCount($count) {
-		return ($count == 1) ? $count . ' post' : $count . ' posts';
+		return ($count == 1) ? $count . ' blog' : $count . ' blogs';
 	}
 
 	function formatGroup($group) {

@@ -73,7 +73,6 @@
 							<h6 class="text-primary font-weight-bold m-0">Bewerken</h6>
 						</div>
 						<div class="card-body">
-							<p class="card-text">Bewerken (TODO)</p>
 							<p class="card-text"><a href="<?php echo URLROOT; ?>/posts/remove?removeid=<?php echo $post->id ?>">Verwijderen</a></p>
 						</div>
 					</div>

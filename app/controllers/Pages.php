@@ -32,4 +32,12 @@ class Pages extends Controller {
 
 		$this->view('blog', $data);
 	}
+
+	public function dashboarddata() {
+		$data = [
+			'title' => 'Data'
+		];
+
+		$this->view('dashboarddata', $data);
+	}
 }

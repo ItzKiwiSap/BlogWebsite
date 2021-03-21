@@ -1,14 +1,14 @@
 <?php
 
-	$limit = $limit = (isset($_GET['limit'])) ? $_GET['limit'] : 50;
-	$allPosts = $posts->getAllPosts();
+	$limit = (isset($limit)) ? $limit : ((isset($_GET['limit'])) ? $_GET['limit'] : 50);
+	$allPosts = $posts->getAllPostsLimit($limit);
 
 	if(empty($allPosts)) {
 		echo '<small>Er zijn nog geen blogs geplaatst.</small>';
 	} else {
 		foreach ($allPosts as $post) {
-			echo '<div class="col">
-					<a class="text-decoration-none text-reset" href="?id=' . $post->id . '">
+			echo '<div class="col mb-4">
+					<a class="text-decoration-none text-reset" href="'. URLROOT . '/pages/blogs?id=' . $post->id . '">
 						<div class="card shadow border-0">
 							<div class="card-body">
 								<h5 class="card-title">' . $post->title . '</h5>

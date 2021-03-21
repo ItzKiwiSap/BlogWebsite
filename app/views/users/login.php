@@ -28,16 +28,18 @@
 	<form class="card-body" method="POST" action="<?php echo URLROOT; ?>/users/login">
 		<div class="form-group">
 			<label for="username">Gebruikersnaam of email adres</label>
+			<br>
+			<small class="text-danger"><?php echo $data['usernameOrEmailError']; ?></small>
 			<input type="text" class="form-control" name="usernameOrEmail" aria-describedby="usernameHelp" required>
 			<small id="usernameHelp" class="form-text text-muted">Vul hier uw gebruikersnaam of email in.</small>
-			<small class="form-text text-muted"><?php echo $data['usernameOrEmailError']; ?></small>
 		</div>
 
 		<div class="form-group">
 			<label for="password">Wachtwoord</label>
+			<br>
+			<small class="text-danger"><?php echo $data['passwordError']; ?></small>
 			<input type="password" class="form-control" name="password" required>
 			<small id="usernameHelp" class="form-text text-muted">Vul hier uw wachtwoord in.</small>
-			<small class="form-text text-muted"><?php echo $data['passwordError']; ?></small>
 		</div>
 
 		<button type="submit" class="btn btn-primary">Inloggen</button>

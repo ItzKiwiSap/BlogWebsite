@@ -62,6 +62,7 @@ class UserModel {
 
     public function findAdminUsers() {
         $this->db->query('SELECT * FROM users WHERE privilegegroup=admin');
+        return $this->db->rowCount() > 0;
     }
 
     public function findUserByUsername($username) {
@@ -79,5 +80,29 @@ class UserModel {
         $this->db->query('SELECT * FROM users WHERE email = :email');
         $this->db->bind(':email', $email);
         return $this->db->rowCount() > 0;
+    }
+
+    public function getUsers() {
+        $this->db->query('SELECT * FROM users WHERE privilegegroup=:user');
+        $this->db->bind(':user', 'user');
+        return $this->db->rowCount();
+    }
+
+    public function getBloggers($admins) {
+        if($admins) {
+            $this->db->query('SELECT * FROM users WHERE privilegegroup=:blogger OR privilegegroup=:admin');
+            $this->db->bind(':blogger', 'blogger');
+            $this->db->bind(':admin', 'admin');
+        } else {
+            $this->db->query('SELECT * FROM users WHERE privilegegroup=:blogger');
+            $this->db->bind(':blogger', 'blogger');
+        }
+        return $this->db->rowCount();
+    }
+
+    public function getAdmins() {
+        $this->db->query('SELECT * FROM users WHERE privilegegroup=:admin');
+        $this->db->bind(':admin', 'admin');
+        return $this->db->rowCount();
     }
 }

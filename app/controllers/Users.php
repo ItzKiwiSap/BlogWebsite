@@ -163,6 +163,18 @@ class Users extends Controller {
         return $this->userModel->getTotalUserCount();
     }
 
+    public function getUsers() {
+        return $this->userModel->getUsers();
+    }
+
+    public function getBloggers($admins) {
+        return $this->userModel->getBloggers($admins);
+    }
+
+    public function getAdmins() {
+        return $this->userModel->getAdmins();
+    }
+
 	public function createUserSession($user) {
         $_SESSION['user_id'] = $user->id;
         $_SESSION['username'] = $user->username;

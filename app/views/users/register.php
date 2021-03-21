@@ -28,30 +28,34 @@
 	<form class="card-body" method="POST" action="<?php echo URLROOT; ?>/users/register">
 		<div class="form-group">
 			<label for="username">Gebruikersnaam</label>
+			<br>
+			<small class="text-danger"><?php echo $data['usernameError']; ?></small>
 			<input type="text" class="form-control" name="username" aria-describedby="usernameHelp" required>
 			<small id="usernameHelp" class="form-text text-muted">Vul hier uw gebruikersnaam in.</small>
-			<small class="form-text text-muted"><?php echo $data['usernameError']; ?></small>
 		</div>
 
 		<div class="form-group">
 			<label for="email">Email</label>
+			<br>
+			<small class="text-danger"><?php echo $data['usernameError']; ?></small>
 			<input type="email" class="form-control" name="email" aria-describedby="emailHelp" required>
 			<small id="emailHelp" class="form-text text-muted">Vul hier uw email in.</small>
-			<small class="form-text text-muted"><?php echo $data['usernameError']; ?></small>
 		</div>
 
 		<div class="form-group">
 			<label for="password">Wachtwoord</label>
+			<br>
+			<small class="text-danger"><?php echo $data['passwordError']; ?></small>
 			<input type="password" class="form-control" name="password" required>
 			<small id="passwordHelp" class="form-text text-muted">Vul hier uw wachtwoord in.</small>
-			<small class="form-text text-muted"><?php echo $data['passwordError']; ?></small>
 		</div>
 
 		<div class="form-group">
 			<label for="confirmPassword">Herhaal wachtwoord</label>
+			<br>
+			<small class="text-danger"><?php echo $data['confirmPasswordError']; ?></small>
 			<input type="password" class="form-control" name="confirmPassword" required>
 			<small id="confirmPasswordHelp" class="form-text text-muted">Herhaal uw wachtwoord.</small>
-			<small class="form-text text-muted"><?php echo $data['confirmPasswordError']; ?></small>
 		</div>
 
 		<button type="submit" class="btn btn-primary">Registreren</button>

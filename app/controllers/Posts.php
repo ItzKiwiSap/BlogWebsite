@@ -48,7 +48,23 @@ class Posts extends Controller {
 		return $this->postModel->getPost($id);
 	}
 
+	public function getAllPostsLimit($limit) {
+		return $this->postModel->getAllPostsLimit($limit);
+	}
+
 	public function getAllPosts() {
 		return $this->postModel->getAllPosts();
 	}
+
+	public function getAllPostsOrdered() {
+		return $this->postModel->getAllPostsOrdered();
+	}
+
+	public function getPopularBloggers() {
+		return $this->postModel->getPopularBloggers();
+	}
+
+	public function getTotalPostCount() {
+        return $this->postModel->getTotalPostCount();
+    }
 }

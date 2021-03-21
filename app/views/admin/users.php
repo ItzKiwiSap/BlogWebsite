@@ -2,6 +2,11 @@
 	require_once APPROOT . '/views/includes/head.inc.php';
 	require_once APPROOT . '/views/includes/navigation.inc.php';
 
+	if(!isAdmin()) {
+		header("Location: " . URLROOT);
+		return;
+	}
+
 	require_once APPROOT . '/controllers/Users.php';
 
 	$admin = new Admin;
@@ -9,22 +14,25 @@
 ?>
 
 <div class="container mt-5">
-<h1 class="col">Gebruikers</h1>
+	<div class="row">
+		<h1 class="col">Gebruikers</h1>
+		<a class="col d-flex justify-content-end mt-4" href="<?php echo URLROOT; ?>/admin/dashboard">Bekijk dashboard</a>
+	</div>
 
-<table class="table table-hover mt-3">
-	<thead>
-		<th>ID</th>
-		<th>Gebruikersnaam</th>
-		<th>E-mail</th>
-		<th>Groep</th>
-		<th>Aantal posts</th>
-		<th></th>
-		<th></th>
-	</thead>
-	<tbody>
-		<?php require_once APPROOT . '/views/includes/adminusers.inc.php'; ?>
-	</tbody>
-</table>
+	<table class="table table-hover mt-3">
+		<thead>
+			<th>ID</th>
+			<th>Gebruikersnaam</th>
+			<th>E-mail</th>
+			<th>Groep</th>
+			<th>Aantal posts</th>
+			<th></th>
+			<th></th>
+		</thead>
+		<tbody>
+			<?php require_once APPROOT . '/views/includes/adminusers.inc.php'; ?>
+		</tbody>
+	</table>
 </div>
 
 <div class="modal fade" id="modalDelete" role="dialog">
@@ -74,19 +82,13 @@
 </div>
 
 <script>
-	function setIdDelete() {
-		const button = document.querySelector('.deleteButton');
+	function setIdDelete(id) {
 		const input = document.querySelector('.modalUserDeleteInput');
-		const id = button.getAttribute('data-item');
-
 		input.value = id;
 	}
 
-	function setIdEdit() {
-		const button = document.querySelector('.editButton');
+	function setIdEdit(id) {
 		const input = document.querySelector('.modalUserEditInput');
-		const id = button.getAttribute('data-item');
-
 		input.value = id;
 	}
 </script>

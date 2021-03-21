@@ -35,4 +35,24 @@ class PostModel {
 		$this->db->query('SELECT * FROM posts ORDER BY creationtime DESC');
 		return $this->db->resultSet();
 	}
+
+	public function getAllPostsLimit($limit) {
+		$this->db->query('SELECT * FROM posts ORDER BY creationtime DESC LIMIT ' . $limit);
+		return $this->db->resultSet();
+	}
+
+	public function getAllPostsOrdered() {
+		$this->db->query('SELECT creationtime FROM posts ORDER BY creationtime');
+		return $this->db->resultSet();
+	}
+
+	public function getPopularBloggers() {
+		$this->db->query('SELECT userid FROM posts GROUP BY userid LIMIT 10');
+		return $this->db->resultSet();
+	}
+
+	public function getTotalPostCount() {
+        $this->db->query('SELECT * FROM posts');
+        return $this->db->rowCount();
+    }
 }
