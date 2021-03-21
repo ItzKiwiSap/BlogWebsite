@@ -18,6 +18,14 @@
 		font-size: 11px;
 	}
 
+	p.card-text.mt-2 {
+		color: #000;
+	}
+
+	.card-title {
+		color: #000;
+	}
+
 	input[name="visibleCategories"] {
 		border: none;
 		outline: none;
@@ -77,7 +85,9 @@
 <?php elseif(isset($_GET['create']) && isLoggedIn() && isBlogger()) : ?>
 
 	<div class="container mt-5">
-		<form method="POST" action="<?php echo URLROOT; ?>/posts/create" onkeydown="return event.key != 'Enter';">
+		<h1 class="col">Een nieuwe blog schrijven</h1>
+
+		<form method="POST" class="mt-4" action="<?php echo URLROOT; ?>/posts/create" onkeydown="return event.key != 'Enter';">
 			<div class="form-group">
 				<input type="text" class="form-control" name="title" placeholder="Titel" required>
 
@@ -91,7 +101,7 @@
 					<input type="text" name="categories" hidden>
 				</div>
 
-				<textarea class="form-control mt-4" maxlength="3000" minlength="500" name="body" rows="25" placeholder="Blog" required></textarea>
+				<textarea class="form-control mt-4" maxlength="3000" minlength="500" name="body" rows="20" placeholder="Blog" required></textarea>
 
 				<input type="submit" name="submit" class="form-control btn btn-primary mt-4" value="Plaats blog">
 			</div>

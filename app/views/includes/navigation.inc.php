@@ -28,6 +28,9 @@
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="<?php echo URLROOT; ?>/users/profile">Profiel</a>
                         <li><hr class="dropdown-divider"></li>
+                        <?php if(isAdmin()) : ?>
+                            <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/admin/dashboard">Beheerder dashboard</a></li>
+                        <?php endif; ?>
                         <li><a class="dropdown-item" href="<?php echo URLROOT; ?>/users/logout">Uitloggen</a></li>
                     </ul>
                 </li>

@@ -3,7 +3,7 @@
 class Posts extends Controller {
 
 	public function __construct() {
-		$this->postModel = $this->model('Post');
+		$this->postModel = $this->model('PostModel');
 	}
 
 	public function create() {

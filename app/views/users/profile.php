@@ -29,7 +29,7 @@
 				<div class="card-body">
 					<p class="card-text"><?php echo formatGroup($_SESSION['privilegegroup']); ?></p>
 					<?php if(isBlogger()) : ?>
-						<p class="card-text text-muted"><?php echo ($allPostsCount == 1) ? $allPostsCount . ' post' : $allPostsCount . ' posts'; ?></p>
+						<p class="card-text text-muted"><?php echo formatPostCount($allPostsCount); ?></p>
 					<?php endif; ?>
 				</div>
 			</div>

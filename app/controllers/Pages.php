@@ -3,8 +3,9 @@
 class Pages extends Controller {
 
 	public function __construct() {
-		$this->userModel = $this->model('User');
-		$this->postModel = $this->model('Post');
+		$this->userModel = $this->model('UserModel');
+		$this->postModel = $this->model('PostModel');
+		$this->adminModel = $this->model('AdminModel');
 	}
 
 	public function index() {

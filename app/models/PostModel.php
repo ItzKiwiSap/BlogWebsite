@@ -1,6 +1,6 @@
 <?php
 
-class Post {
+class PostModel {
 
 	private $db;
 

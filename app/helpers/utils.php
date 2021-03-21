@@ -17,6 +17,37 @@
 		}
 	}
 
+	function getOtherGroups($group) {
+		if($group == 'admin') {
+			return ['blogger', 'user'];
+		} else if($group == 'blogger') {
+			return ['admin', 'user'];
+		} else if($group == 'user') {
+			return ['admin', 'blogger'];
+		}
+	}
+
+	function getGroupFromId($id) {
+		if($id == 3) return 'admin';
+		if($id == 2) return 'blogger';
+		if($id == 1) return 'user';
+	}
+
+	function getOtherGroupOptions($group) {
+		$others = getOtherGroups($group);
+		$msg = '';
+
+		foreach ($others as $gr) {
+			$msg = $msg . '<option value="' . getGroupId($gr) . '">' . formatGroup($gr) . '</option>';
+		}
+
+		return $msg;
+	}
+
+	function formatPostCount($count) {
+		return ($count == 1) ? $count . ' post' : $count . ' posts';
+	}
+
 	function formatGroup($group) {
 		if($group == 'user') return 'Gebruiker';
 		if($group == 'blogger') return 'Blogger';

@@ -1,6 +1,6 @@
 <?php
 
-class User {
+class UserModel {
 
 	private $db;
 
@@ -25,7 +25,7 @@ class User {
         $this->db->bind(':username', $username);
 
         $row = $this->db->single();
-        if(is_null($row)) return false;
+        if($row == null || !$row) return false;
 
         $hashedPassword = $row->password;
 
@@ -54,6 +54,12 @@ class User {
         return $this->db->single()->username;
     }
 
+    public function getUser($userId) {
+        $this->db->query('SELECT * FROM users WHERE id = :userid');
+        $this->db->bind(':userid', $userId);
+        return $this->db->single()->username;
+    }
+
     public function findAdminUsers() {
         $this->db->query('SELECT * FROM users WHERE privilegegroup=admin');
     }
@@ -62,6 +68,11 @@ class User {
         $this->db->query('SELECT * FROM users WHERE username = :username');
         $this->db->bind(':username', $username);
         return $this->db->rowCount() > 0;
+    }
+
+    public function getTotalUserCount() {
+        $this->db->query('SELECT * FROM users');
+        return $this->db->rowCount();
     }
 
     public function findUserByEmail($email) {

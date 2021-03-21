@@ -3,7 +3,7 @@
 class Users extends Controller {
 
 	public function __construct() {
-		$this->userModel = $this->model('User');
+		$this->userModel = $this->model('UserModel');
 	}
 
 	public function register() {
@@ -138,11 +138,6 @@ class Users extends Controller {
         $this->view('users/login', $data);
 	}
 
-    public function admin() {
-        $data = ['title' => 'Paneel'];
-        $this->view('admin/dashboard', $data); 
-    }
-
     public function profile() {
         $data = ['title' => 'Profiel'];
         $this->view('users/profile', $data);
@@ -158,6 +153,14 @@ class Users extends Controller {
 
     public function getUserName($userId) {
         return $this->userModel->getUserName($userId);
+    }
+
+    public function getUser($userId) {
+        return $this->userModel->getUser($userId);
+    }
+
+    public function getTotalUserCount() {
+        return $this->userModel->getTotalUserCount();
     }
 
 	public function createUserSession($user) {
