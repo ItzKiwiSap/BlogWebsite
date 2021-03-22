@@ -19,6 +19,20 @@
 	.card-text small {
 		font-size: 11px;
 	}
+
+	p.card-text.mt-2 {
+		color: #000;
+	}
+
+	.card-title {
+		color: #000;
+	}
+
+	.card-img-top {
+		width: 100%;
+		height: 40vh;
+		object-fit: cover;
+	}
 </style>
 
 <div class="container mt-5">
@@ -37,7 +51,14 @@
 
 		<?php if(isBlogger()) : ?>
 			<div class="col-md-9">
-				<h1>Uw nieuwste berichten</h1>
+				<div class="row">
+					<h1 class="col">Uw nieuwste berichten</h1>
+					<?php 
+						if(isLoggedIn() && isBlogger()) {
+							echo '<a class="col d-flex justify-content-end mt-4" href="' . URLROOT . '/pages/blogs?create">Schrijf een nieuwe blog...</a>';
+						}
+					?>
+				</div>
 
 				<div class="row row-cols-1 row-cols-md-2 g-4 mt-1">
 					<?php

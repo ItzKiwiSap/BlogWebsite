@@ -11,6 +11,30 @@
 	$limit = 3;
 ?>
 
+<style type="text/css">
+	.card-text {
+		font-size: 14px;
+	}
+
+	.card-text small {
+		font-size: 11px;
+	}
+
+	p.card-text.mt-2 {
+		color: #000;
+	}
+
+	.card-title {
+		color: #000;
+	}
+
+	.card-img-top {
+		width: 100%;
+		height: 40vh;
+		object-fit: cover;
+	}
+</style>
+
 <div class="container mt-5">
 	<h1 class="col">Nieuwste blogs</h1>
 

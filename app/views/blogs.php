@@ -124,7 +124,7 @@
 					<h1 class="col">Blogs</h1>
 					<?php 
 						if(isLoggedIn() && isBlogger()) {
-							echo '<a class="col d-flex justify-content-end mt-4" href="?create">Maak een nieuwe blog...</a>';
+							echo '<a class="col d-flex justify-content-end mt-4" href="?create">Schrijf een nieuwe blog...</a>';
 						}
 					?>
 				</div>

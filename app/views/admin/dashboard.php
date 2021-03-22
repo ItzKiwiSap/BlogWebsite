@@ -97,13 +97,13 @@
                     </div>
                     <div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h6 class="text-primary font-weight-bold m-0">Blogs gepubliceerd</h6>
+                        <h6 class="text-primary font-weight-bold m-0">Blogs gepubliceerd (Afgelopen 30 dagen)</h6>
                     </div>
                     <canvas style="min-height: 250px; display: block; height: 182px; width: 1043px;" id="newBlogs" width="1303" height="227" class="chartjs-render-monitor"></canvas>
                 </div>
             </div>
 
-            <div class="row pieDiv mb-5">
+            <div class="row pieDiv mb-5 mx-auto">
                 <div class="col-md-6">
                     <div class="card shadow"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
                         <div class="card-header d-flex justify-content-center align-items-center">

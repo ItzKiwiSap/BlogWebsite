@@ -9,8 +9,12 @@
 		foreach ($latestPosts as $post) {
 			echo '<div class="col">
 					<a class="text-decoration-none text-reset" href="' . URLROOT . '/pages/blogs?id=' . $post->id . '">
-						<div class="card shadow border-0">
-							<div class="card-body">
+						<div class="card shadow border-0">';
+
+			echo getImage($post->image);
+
+
+			echo '<div class="card-body">
 								<h5 class="card-title">' . $post->title . '</h5>
 								' . formatCategories($post->categories) . '
 								<p class="card-text">' . formatBody($post->body) . '</p>
@@ -22,5 +26,12 @@
 						</div>
 					</a>
 				</div>';
+		}
+	}
+
+	function getImage($image) {
+		if(empty($image)) return '';
+		else {
+			return '<img src="' . $image . '" class="card-img-top" />';
 		}
 	}
