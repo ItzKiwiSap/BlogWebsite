@@ -149,6 +149,8 @@
                 var tempday = 0;
                 var tempCount = 0;
 
+                var last;
+
                 for(var i in postData) {
                     if(tempday == 0) {
                         tempday = parseInt(moment(postData[i].creationtime).format("DDDD"));
@@ -168,10 +170,23 @@
                         if(tempCount > highestCount) highestCount = tempCount;
                         if(tempCount < lowestCount) lowestCount = tempCount;
 
+                        last = moment(postData[i].creationtime);
+
                         if(+i + +1 <= +postData.length - +1) {
+                            last = moment(postData[+i + +1].creationtime);
                             var start = moment(postData[i].creationtime).add(1, 'days');
 
                             while(start.format("M/D/YYYY") != moment(postData[+i + +1].creationtime).format("M/D/YYYY")) {
+                                days.push(capitalizeWords(start.format("DD MMMM")));
+                                count.push(0);
+                                start.add(1, 'days');
+                            }
+                        }
+
+                        if(moment().isSameOrBefore(last)) {
+                            var start = moment().add(1, 'days');
+
+                            while(start.isSameOrBefore(last)) {
                                 days.push(capitalizeWords(start.format("DD MMMM")));
                                 count.push(0);
                                 start.add(1, 'days');
@@ -183,6 +198,17 @@
                     }
 
                     if(tempday == 0 && tempCount == 0 && days.length == 30) break;
+                }
+
+                if(moment(last).diff(postData[0].creationtime, 'days') < 30) {
+                    var toAdd = +30 - +moment(last).diff(postData[0].creationtime, 'days');
+                    var lastAdded = moment(postData[0].creationtime).subtract(1, 'days');
+
+                    for(var i = 0; i < toAdd; i++) {
+                        days.unshift(capitalizeWords(lastAdded.format("DD MMMM")));
+                        count.unshift(0);
+                        lastAdded = lastAdded.subtract(1, 'days');
+                    }
                 }
 
                 var postChartData = {

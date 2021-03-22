@@ -36,6 +36,12 @@
 		outline: none;
 		box-shadow: none;
 	}
+
+	.card-img-top {
+		width: 100%;
+		height: 40vh;
+		object-fit: cover;
+	}
 </style>
 
 <?php if(isset($_GET['id'])) : ?>
@@ -67,7 +73,7 @@
 					</div>
 				</div>
 
-				<?php if(isLoggedIn() && $post->userid == $_SESSION['user_id']) : ?>
+				<?php if(isLoggedIn() && ($post->userid == $_SESSION['user_id']) || isAdmin()) : ?>
 					<div class="card mt-4">
 						<div class="card-header">
 							<h6 class="text-primary font-weight-bold m-0">Bewerken</h6>
@@ -86,9 +92,11 @@
 	<div class="container mt-5">
 		<h1 class="col">Een nieuwe blog schrijven</h1>
 
-		<form method="POST" class="mt-4" action="<?php echo URLROOT; ?>/posts/create" onkeydown="return event.key != 'Enter';">
+		<form method="POST" class="mt-4" action="<?php echo URLROOT; ?>/posts/create" onkeydown="return event.key != 'Enter';" enctype="multipart/form-data">
 			<div class="form-group">
 				<input type="text" class="form-control" name="title" placeholder="Titel" required>
+
+				<input type="file" class="form-control mt-4" name="imageHeader" accept="image/png, image/jpg, image/jpeg">
 
 				<div class="container border rounded mt-4">
 					<div class="category-container gap-1 d-flex flex-row p-1">

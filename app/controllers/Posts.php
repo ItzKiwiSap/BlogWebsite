@@ -11,7 +11,8 @@ class Posts extends Controller {
 			'title' => 'Plaats blog',
 			'blogtitle' => '',
 			'categories' => '',
-			'body' => ''
+			'body' => '',
+			'image' => ''
 		];
 
 		if($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -21,11 +22,20 @@ class Posts extends Controller {
 				'title' => 'Plaats blog',
 				'blogtitle' => trim($_POST['title']),
 				'categories' => $_POST['categories'],
-				'body' => trim($_POST['body'])
+				'body' => trim($_POST['body']),
+				'image' => ''
 			];
 
+			if(empty($data['image']) && isset($_FILES['imageHeader'])) {
+				$extension = pathinfo($_FILES['imageHeader']['tmp_name'], PATHINFO_EXTENSION);
+				$imgBase64 = base64_encode(file_get_contents($_FILES['imageHeader']['tmp_name']));
+				$image = "data::image/" . $extension . ";base64," . $imgBase64;
+
+				$data['image'] = $image;
+			}
+
 			if(!empty($data['blogtitle']) && !empty($data['categories']) && !empty($data['body'])) {
-				$this->postModel->addPost($_SESSION['user_id'], $data['blogtitle'], $data['body'], $data['categories']);
+				$this->postModel->addPost($_SESSION['user_id'], $data['blogtitle'], $data['body'], $data['categories'], $data['image']);
 			}
 		}
 

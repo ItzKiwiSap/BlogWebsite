@@ -8,13 +8,14 @@ class PostModel {
 		$this->db = new Database;
 	}
 
-	public function addPost($user_id, $title, $body, $categories) {
-		$this->db->query('INSERT INTO posts (userid, title, categories, body) VALUES (:userid, :title, :categories, :body)');
+	public function addPost($user_id, $title, $body, $categories, $image) {
+		$this->db->query('INSERT INTO posts (userid, title, categories, body, image) VALUES (:userid, :title, :categories, :body, :image)');
 
 		$this->db->bind(':userid', $user_id);
 		$this->db->bind(':title', $title);
 		$this->db->bind(':categories', $categories);
 		$this->db->bind(':body', $body);
+		$this->db->bind(':image', $image);
 
 		return $this->db->execute();
 	}
