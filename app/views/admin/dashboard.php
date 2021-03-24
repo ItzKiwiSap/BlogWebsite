@@ -183,21 +183,26 @@
                             }
                         }
 
-                        if(moment().isSameOrBefore(last)) {
-                            var start = moment().add(1, 'days');
-
-                            while(start.isSameOrBefore(last)) {
-                                days.push(capitalizeWords(start.format("DD MMMM")));
-                                count.push(0);
-                                start.add(1, 'days');
-                            }
-                        }
-
                         tempday = 0;
                         tempCount = 0;
                     }
 
                     if(tempday == 0 && tempCount == 0 && days.length == 30) break;
+                }
+
+                if(last.isSameOrBefore(moment())) {
+                    var lastDay = last.format("DD");
+                    var today = moment().format("DD");
+                    var start = last.add(1, 'days');
+
+                    console.log(+today - +lastDay);
+
+                    for(var i = 0; i < (+today - +lastDay); i++) {
+                        days.push(capitalizeWords(start.format("DD MMMM")));
+                        count.push(0);
+                        start.add(1, 'days');
+                        lowestCount = 0;
+                    }
                 }
 
                 if(moment(last).diff(postData[0].creationtime, 'days') < 30) {
@@ -208,6 +213,7 @@
                         days.unshift(capitalizeWords(lastAdded.format("DD MMMM")));
                         count.unshift(0);
                         lastAdded = lastAdded.subtract(1, 'days');
+                        lowestCount = 0;
                     }
                 }
 

@@ -68,7 +68,7 @@
 
 				<?php
 					if($allPostsCount > $limit) {
-						echo '<p class="card-text text-muted mt-3"><a href="?limit=' . $limit = $limit * 2 . '">Laat meer zien...</a></p>';
+						echo '<p class="card-text text-muted mt-3 mb-4"><a href="?limit=' . $limit = $limit * 2 . '">Laat meer zien...</a></p>';
 					}
 				?>
 			</div>

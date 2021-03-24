@@ -37,6 +37,11 @@ class PostModel {
 		return $this->db->resultSet();
 	}
 
+	public function getAllPostsCount() {
+		$this->db->query('SELECT * FROM posts');
+		return $this->db->rowCount();
+	}
+
 	public function getAllPostsLimit($limit) {
 		$this->db->query('SELECT * FROM posts ORDER BY creationtime DESC LIMIT ' . $limit);
 		return $this->db->resultSet();

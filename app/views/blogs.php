@@ -7,6 +7,8 @@
 
 	$posts = new Posts;
 	$users = new Users;
+
+	$allPostsCount = $posts->getAllPostsCount();
 ?>
 
 <style type="text/css">
@@ -42,6 +44,12 @@
 		height: 40vh;
 		object-fit: cover;
 	}
+
+	.img-show {
+		width: 100%;
+		height: 50vh;
+		object-fit: cover;
+	}
 </style>
 
 <?php if(isset($_GET['id'])) : ?>
@@ -49,13 +57,19 @@
 	<div class="container mt-5">
 		<?php require_once APPROOT . '/views/includes/blogpost.inc.php'; ?>
 
-		<div class="row">
+		<div class="row mb-4">
 			<div class="col-xl">
 				<h1><?php echo $post->title; ?></h1>
 				<div class="row row-cols-md-2 g-1">
 					<?php echo formatCategories($post->categories, 8); ?>
 				</div>
 				
+				<?php 
+					if(!empty($post->image)) {
+						echo '<img src="' . $post->image . '" class="img-show mt-3">';
+					}
+				?>
+
 				<div class="mt-3">
 					<?php echo wordwrap($post->body, 150, "<br />\n", true); ?>
 				</div>
@@ -134,6 +148,12 @@
 						require_once APPROOT . '/views/includes/blogposts.inc.php';
 					?>
 				</div>
+
+				<?php
+					if($allPostsCount > $limit) {
+						echo '<p class="card-text text-muted mt-3 mb-4"><a href="?limit=' . $limit = $limit * 2 . '">Laat meer zien...</a></p>';
+					}
+				?>
 			</div>
 		</div>
 	</div>

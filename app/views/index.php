@@ -59,7 +59,7 @@
 
 			<div class="card mt-3">
 				<div class="card-header">
-					<h6 class="text-primary font-weight-bold m-0">Statestieken</h6>
+					<h6 class="text-primary font-weight-bold m-0">Statistieken</h6>
 				</div>
 				<div class="card-body">
 					<p class="card-text">Totaal aantal blogs: <?php echo $posts->getTotalPostCount(); ?></p>

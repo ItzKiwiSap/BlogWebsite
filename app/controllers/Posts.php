@@ -26,7 +26,7 @@ class Posts extends Controller {
 				'image' => ''
 			];
 
-			if(empty($data['image']) && isset($_FILES['imageHeader'])) {
+			if(empty($data['image']) && isset($_FILES['imageHeader']) && !empty($_FILES['imageHeader']['name'])) {
 				$extension = pathinfo($_FILES['imageHeader']['tmp_name'], PATHINFO_EXTENSION);
 				$imgBase64 = base64_encode(file_get_contents($_FILES['imageHeader']['tmp_name']));
 				$image = "data::image/" . $extension . ";base64," . $imgBase64;
@@ -64,6 +64,10 @@ class Posts extends Controller {
 
 	public function getAllPosts() {
 		return $this->postModel->getAllPosts();
+	}
+
+	public function getAllPostsCount() {
+		return $this->postModel->getAllPostsCount();
 	}
 
 	public function getAllPostsOrdered() {
